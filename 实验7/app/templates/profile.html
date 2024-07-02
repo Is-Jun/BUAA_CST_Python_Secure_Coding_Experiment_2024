@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<h2>Profile</h2>
+<div class="profile-container">
+    <h3>Your Information</h3>
+    <table>
+        <tr>
+            <td><strong>Username:</strong></td>
+            <td>{{ user.username }}</td>
+        </tr>
+        <tr>
+            <td><strong>Real Name:</strong></td>
+            <td>{{ user.real_name }}</td>
+        </tr>
+        <tr>
+            <td><strong>Age:</strong></td>
+            <td>{{ user.age }}</td>
+        </tr>
+        <tr>
+            <td><strong>Gender:</strong></td>
+            <td>{{ user.gender }}</td>
+        </tr>
+        <tr>
+            <td><strong>Phone:</strong></td>
+            <td>{{ user.phone }}</td>
+        </tr>
+        <tr>
+            <td><strong>Email:</strong></td>
+            <td>{{ user.email }}</td>
+        </tr>
+        <tr>
+            <td><strong>Address:</strong></td>
+            <td>{{ user.address }}</td>
+        </tr>
+        <tr>
+            <td><strong>Role:</strong></td>
+            <td>{{ user.role }}</td>
+        </tr>
+    </table>
+    <div class="buttons">
+    <a href="{{ url_for('routes.logout') }}" class="button">Logout</a>
+    <a href="{{ url_for('routes.edit_profile') }}" class="button">Edit Profile</a>
+    </div>
+</div>
+
+{% if user.role == 'admin' %}
+<h3>All Users</h3>
+<div class="users-container">
+    <table>
+        <tr>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Operate</th>
+        </tr>
+        {% for user in all_users %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.role }}</td>
+            {% if user.role == 'user' %}
+            <td>
+                <div class="form-button">
+                    <form method="POST" action="{{ url_for('routes.delete_user', user_id=user.id) }}">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <button type="submit">delete</button>
+                    </form>
+
+                    <form method="GET" action="{{ url_for('routes.view_user', user_id=user.id) }}">
+                        <button type="submit">details</button>
+                    </form>
+                </div>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endif %}
+{% endblock %}

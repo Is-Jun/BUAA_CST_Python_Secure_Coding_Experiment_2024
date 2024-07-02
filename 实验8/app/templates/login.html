@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<h2>Login</h2>
+<form method="POST" class="users-container" action="{{ url_for('routes.login') }}">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.username.label }}<br>
+        {{ form.username(size=32) }}
+    </p>
+    <p>
+        {{ form.password.label }}<br>
+        {{ form.password(size=32) }}
+    </p>
+    <p>
+        {{ form.remember_me }} {{ form.remember_me.label }}
+    </p>
+    <p>
+        <img id="captcha_image" src="{{ captcha_src }}" alt="Captcha"><br>
+        {{ form.captcha(size=32) }}<br>
+        <a href="#" onclick="document.getElementById('captcha_image').src='{{ captcha_src }}'; return false;">看不清楚，换一张</a>
+    </p>
+    <p><button type="submit">Login</button></p>
+</form>
+
+<div id="errorPopup">
+    <span id="errorMessage"></span>
+    <br>
+    <button onclick="document.getElementById('errorPopup').style.display='none';" style="margin-top:18%;">Close</button>
+</div>
+
+<script>
+    function showErrorPopup(message) {
+        document.getElementById('errorMessage').innerText = message;
+        document.getElementById('errorPopup').style.display = 'block';
+    }
+
+    {% if 'error' in session %}
+    showErrorPopup("{{ session['error'] }}");
+    {% endif %}
+</script>
+{% endblock %}

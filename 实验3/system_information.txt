@@ -1,0 +1,42 @@
+CPU:
+	User Time:  0.7
+	System Time:  1.7
+	Wait IO:  Windows系统无法获得
+	Idle:  97.4
+
+
+Memory:
+	Total:  14877257728
+	Used:  9884106752
+	Free:  4993150976
+	Buffers:  Windows系统无法获得
+	Cache:  Windows系统无法获得
+	Swap:  6359482368
+
+
+Disk:
+	read_count:  305574
+	write_count:  122722
+	read_bytesIO:  11807954944
+	write_bytesIO:  2714362880
+	read_time:  196
+	write_time:  50
+
+
+Network:
+	bytes_sent:  18317148
+	bytes_recv:  67640984
+	packets_sent:  33043
+	packets_recv:  74545
+
+
+Users:
+	name:  江继军
+	terminal:  None
+
+
+Other:
+	Boot Time:  2024-04-03 13:57:03
+	Uptime:  1:02:28
+
+

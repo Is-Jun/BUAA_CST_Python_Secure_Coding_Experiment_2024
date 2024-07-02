@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<h2>Profile</h2>
+<div class="profile-container">
+    <h3>Information</h3>
+    <table>
+        <tr>
+            <td><strong>Username:</strong></td>
+            <td>{{ user.username }}</td>
+        </tr>
+        <tr>
+            <td><strong>Real Name:</strong></td>
+            <td>{{ user.real_name }}</td>
+        </tr>
+        <tr>
+            <td><strong>Age:</strong></td>
+            <td>{{ user.age }}</td>
+        </tr>
+        <tr>
+            <td><strong>Gender:</strong></td>
+            <td>{{ user.gender }}</td>
+        </tr>
+        <tr>
+            <td><strong>Phone:</strong></td>
+            <td>{{ user.phone }}</td>
+        </tr>
+        <tr>
+            <td><strong>Email:</strong></td>
+            <td>{{ user.email }}</td>
+        </tr>
+        <tr>
+            <td><strong>Address:</strong></td>
+            <td>{{ user.address }}</td>
+        </tr>
+        <tr>
+            <td><strong>Role:</strong></td>
+            <td>{{ user.role }}</td>
+        </tr>
+    </table>
+    <div class="buttons">
+    <a href="{{ url_for('routes.edit_user_profile', user_id=user.id) }}" class="button">Edit Profile</a>
+    </div>
+</div>
+{% endblock %}
